@@ -8,7 +8,7 @@ import (
   "github.com/astaxie/beego/orm"
   _ "github.com/go-sql-driver/mysql"
   _ "github.com/soartec-lab/beego_quickstart/routers"
-  _ "github.com/soartec-lab/beego_quickstart/models/post"
+  _ "github.com/soartec-lab/beego_quickstart/models"
 )
 
 func init() {

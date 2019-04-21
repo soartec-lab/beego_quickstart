@@ -5,13 +5,18 @@ import (
 	"github.com/astaxie/beego/orm"
 )
 
-type PostRepository struct {}
+type Post struct {
+	Id int64
+	Content string `orm: "type(text)"`
+	Created time.Time
+	Modified time.Time
+}
 
 func init() {
 	orm.RegisterModel(new(Post))
 }
 
-func (this *PostRepository) FindAll() ([]*Post, error) {
+func (this *Post) FindAll() ([]*Post, error) {
 	o := orm.NewOrm()
 	var posts []*Post
 	_, err := o.QueryTable("post").OrderBy("Created").All(&posts)
@@ -19,7 +24,7 @@ func (this *PostRepository) FindAll() ([]*Post, error) {
 	return posts, err
 }
 
-func (this *PostRepository) FindById(id int64) (*Post, error) {
+func (this *Post) FindById(id int64) (*Post, error) {
 	o := orm.NewOrm()
 	post := Post { Id: id }
 	err := o.Read(&post)
@@ -27,7 +32,7 @@ func (this *PostRepository) FindById(id int64) (*Post, error) {
 	return &post, err
 }
 
-func (this *PostRepository) Save(p *Post) error {
+func (this *Post) Save(p *Post) error {
 	var err error
 	o := orm.NewOrm()
 	now := time.Now()
@@ -48,7 +53,7 @@ func (this *PostRepository) Save(p *Post) error {
 	return err
 }
 
-func (this *PostRepository) Delete(p *Post) error {
+func (this *Post) Delete(p *Post) error {
     o := orm.NewOrm()
     _, err := o.Delete(p)
 
