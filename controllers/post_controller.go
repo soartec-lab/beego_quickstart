@@ -16,3 +16,21 @@ func (this *PostController) Index() {
 	this.Layout = "layouts/application.html"
 	this.TplName = "post/index.html"
 }
+
+func (this *PostController) Create() {
+	post := models.Post {
+		Content: this.GetString("content"),
+	}
+	err := this.post.Save(&post)
+	flash := beego.NewFlash()
+
+	if err != nil {
+		flash.Error("The post could not be saved. Please, try again.")
+	} else {
+		flash.Notice("The post has been saved.")
+	}
+
+	flash.Store(&this.Controller)
+
+	this.Redirect("/", 302)
+}
