@@ -30,7 +30,7 @@ func init() {
 		return in.Format("2006-01-02 15:04:05")
 	})
 
-	beego.AddFuncMap("n12br", func(in string) string {
+	beego.AddFuncMap("nl2br", func(in string) string {
 		return strings.Replace(in, "\n", "<br>", -1)
 	})
 }
