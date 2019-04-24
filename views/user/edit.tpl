@@ -1,0 +1,1 @@
+/mnt/d/src/go/src/github.com/soartec-lab/beego_quickstart/views/user/edit.tpl
